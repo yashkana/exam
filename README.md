@@ -84,7 +84,7 @@ bst* bst::insert(bst* root,int value)<br>
 	{<br>
 	
 		root->left=insert(root->left,value);<br>
-	}<br>
+<br>	}<br>
 	return root;<br>
 }<br>
 void bst::inorder(bst* root)<br>
@@ -107,4 +107,78 @@ int main()<br>
 	b.inorder(root);<br>
 	return 0;<br>
 }<br>
+
 	
+	
+	Merg sort
+	#include<iostream><br>
+using namespace std;<br>
+void merge(int *a,int low,int high,int mid)<br>
+{<br>
+	int i,j,k,temp[high-low+1];<br>
+	i=low;<br>
+	j=mid+1;<br>
+	k=0;<br>
+	while(i<=mid && j<=high)<br>
+	{
+		if(a[i]<a[j])<br>
+		{
+			temp[k]=a[i];<br>
+			i++;<br>
+			k++;<br>
+		}<br>
+		else<br>
+		{
+		
+		temp[k]=a[j];<br>
+		i++;<br>
+		k++;<br>
+	}<br>
+	}<br>
+	while(i<=mid)<br>
+	{<br>
+		temp[k]=a[i];<br>
+		k++;<br>
+		j++;<br>
+	}<br>
+	while(j<=high)<br>
+	{<br>
+		temp[k]=a[j];<br>
+		k++;<br>
+		j++;<br>
+	}<br>
+	while(i=low && j<=high)<br>
+	{<br>
+		a[i]=temp[k];<br>
+	}<br>
+
+}<br>
+void mergsort(int *a,int low,int high)<br>
+{<br>
+	int mid;<br>
+	mid=(low+high)/2;<br>
+	mergsort(a,low,mid);<br>
+	mergsort(a,mid+1,high);<br>
+	merge(a,low,high,mid);<br>
+}<br>
+int main()<br>
+{
+	int n;<br>
+	cout<<"enter no of element to be sorted";<br>
+	cin>>n;<br>
+	int arr[n];<br>
+	for(int i=0;i<n;i++)<br>
+	{<br>
+	cout<<"enter element"<<i+1<<endl;<br>
+	cin>>arr[i];<br>
+	}<br>
+		mergsort(arr,0,n-1);<br>
+		cout<<"sortde data";<br>
+
+	for(int i=0;i<n;i++)<br>
+				cout<<"sorted element is"<<arr[i];<br>
+	
+}<br>
+
+	return 0;<br>
+}<br>
